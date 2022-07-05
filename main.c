@@ -15,6 +15,27 @@ int extern fitness(int distmx[AMOUNT][CITIES], int ch[]);
 
 int nextFree;
 
+void createDistmxRand(int distmx[AMOUNT][CITIES])
+{
+	srand(time(NULL));
+	for(int i = 0; i < AMOUNT; i++)
+		for(int j = i; j < CITIES; j++)
+		{
+			if(i == j)
+				distmx[i][j] = 0;
+			else
+			{
+				distmx[i][j] = rand() % 100 + 1;
+				distmx[j][i] = distmx[i][j];
+			}
+		}
+}
+/*
+void createDistmxManual(int distmx[AMOUNT][CITIES])
+{
+
+}
+*/
 void createChromosomes(int chromemx[AMOUNT][CITIES])
 {
     srand(time(NULL));
@@ -273,16 +294,7 @@ void pickBest(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES], int over
 
 int main (void)
 {
-    int distmx[AMOUNT][CITIES] = {{0,3,6,7,2,9,34,22,12,15},
-                                  {3,0,4,5,12,11,17,16,19,20},
-                                  {6,4,0,13,21,44,41,26,28,30},
-                                  {7,5,13,0,18,37,28,19,33,51},
-                                  {2,12,21,18,0,21,29,36,42,43},
-                                  {9,11,44,37,21,0,2,1,14,10},
-                                  {34,17,41,28,29,2,0,27,21,31},
-                                  {22,16,26,19,36,1,27,0,46,47},
-                                  {12,19,28,33,42,14,21,46,0,50},
-                                  {15,20,30,51,43,10,31,47,50,0}};
+    int distmx[CITIES][CITIES];
     int chromemx[AMOUNT][CITIES];
     int nextGen[AMOUNT][CITIES];
     int overallBest[1][CITIES];
@@ -291,6 +303,7 @@ int main (void)
         overallBest[0][i] = i + 1;
     printf("Insert the amount of additional generations you want to be created(in range between 0 - 100): ");
     scanf("%d", &amountGiven);
+	createDistmxRand(distmx);
     createChromosomes(chromemx);
     createChromosomesNg(nextGen);
     if (amountGiven > 0 && amountGiven <= 100)
