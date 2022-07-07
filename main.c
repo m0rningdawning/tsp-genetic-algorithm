@@ -15,7 +15,7 @@ int extern fitness(int distmx[AMOUNT][CITIES], int ch[]);
 
 int nextFree;
 
-void createDistmxRand(int distmx[AMOUNT][CITIES])
+void createDistmxRand(int distmx[AMOUNT][CITIES], int min, int max)
 {
 	srand(time(NULL));
 	for(int i = 0; i < AMOUNT; i++)
@@ -25,7 +25,7 @@ void createDistmxRand(int distmx[AMOUNT][CITIES])
 				distmx[i][j] = 0;
 			else
 			{
-				distmx[i][j] = rand() % 100 + 1;
+				distmx[i][j] = rand() % max + min;
 				distmx[j][i] = distmx[i][j];
 			}
 		}
@@ -298,15 +298,17 @@ int main (void)
     int chromemx[AMOUNT][CITIES];
     int nextGen[AMOUNT][CITIES];
     int overallBest[1][CITIES];
-    int amountGiven;
+    int amountGiven, min, max;
     for(int i = 0; i < CITIES; i++)
         overallBest[0][i] = i + 1;
-    printf("Insert the amount of additional generations you want to be created(in range between 0 - 100): ");
+    printf("Insert the amount of additional generations you want to be created(in range between 0 - 10000): ");
     scanf("%d", &amountGiven);
-	createDistmxRand(distmx);
+    printf("Insert the range of distances to be generated(from minimum to maximum vlaue respectively): ");
+    scanf("%d %d", &min, &max);
+	createDistmxRand(distmx, min, max);
     createChromosomes(chromemx);
     createChromosomesNg(nextGen);
-    if (amountGiven > 0 && amountGiven <= 100)
+    if (amountGiven > 0 && amountGiven <= 10000)
     {  
         puts("--------------------------------------------");
         puts("Initial population is: ");
