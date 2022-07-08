@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <stdbool.h>
 #include <time.h>
 
 //Amount of chromosomes
@@ -11,11 +11,11 @@
 
 // Traveling Salesman Problem
 
-int extern fitness(int distmx[AMOUNT][CITIES], int ch[]);
+int extern fitness(int distmx[CITIES][CITIES], int ch[]);
 
 int nextFree;
 
-void createDistmxRand(int distmx[AMOUNT][CITIES], int min, int max)
+void createDistmxRand(int distmx[CITIES][CITIES], int min, int max)
 {
 	srand(time(NULL));
 	for(int i = 0; i < AMOUNT; i++)
@@ -30,12 +30,7 @@ void createDistmxRand(int distmx[AMOUNT][CITIES], int min, int max)
 			}
 		}
 }
-/*
-void createDistmxManual(int distmx[AMOUNT][CITIES])
-{
 
-}
-*/
 void createChromosomes(int chromemx[AMOUNT][CITIES])
 {
     srand(time(NULL));
@@ -64,7 +59,7 @@ void createChromosomesNg(int nextGen[AMOUNT][CITIES])
         }
 }
 
-void printChromosomes(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES])
+void printChromosomes(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES])
 {
   for(int i = 0; i < AMOUNT; i++)
     {
@@ -77,7 +72,7 @@ void printChromosomes(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES])
     }
 }
 
-int tournament(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES], int numofTour)
+int tournament(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int numofTour)
 {
     int tmp[numofTour];
     int bestPos;
@@ -100,7 +95,7 @@ int tournament(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES], int num
     return bestPos;
 }
 
-int fitness(int distmx[AMOUNT][CITIES], int ch[])
+int fitness(int distmx[CITIES][CITIES], int ch[])
 {
     int distance = 0;
     for(int i = 0; i < CITIES - 1; i++)
@@ -110,7 +105,7 @@ int fitness(int distmx[AMOUNT][CITIES], int ch[])
     return distance;
 }
 
-void copyChrome(int distmx[AMOUNT][CITIES], int destination[AMOUNT][CITIES], int source[AMOUNT][CITIES], int from)
+void copyChrome(int distmx[CITIES][CITIES], int destination[AMOUNT][CITIES], int source[AMOUNT][CITIES], int from)
 {
     if (fitness(distmx, destination[nextFree]) > fitness(distmx, source[from]))
     {
@@ -132,7 +127,7 @@ void copyMx(int chromemx[AMOUNT][CITIES], int nextGen[AMOUNT][CITIES])
     nextFree = 0;
 }
 
-void mutation(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES])
+void mutation(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES])
 { 
     int pos = tournament(distmx,chromemx, 3);
     int counter1 = rand() % CITIES;
@@ -257,7 +252,7 @@ void crossover(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES],int next
     }
 }
 
-void mutationInv(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES])
+void mutationInv(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES])
 {
     int pos = tournament(distmx,chromemx, 3);
     int tmp = rand() % CITIES / 2;
@@ -274,13 +269,13 @@ void mutationInv(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES],int ne
     copyChrome(distmx, nextGen, chromemx, pos);
 }
 
-void reproduction(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES])
+void reproduction(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES])
 {
     int pos = nextFree;
     copyChrome(distmx, nextGen, chromemx, pos);
 }
 
-void pickBest(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES], int overallBest[1][CITIES])
+void pickBest(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int overallBest[1][CITIES])
 {
     int pos = tournament(distmx, chromemx, 100);
     int bestValueCh = fitness(distmx, chromemx[pos]); 
@@ -303,8 +298,25 @@ int main (void)
         overallBest[0][i] = i + 1;
     printf("Insert the amount of additional generations you want to be created(in range between 0 - 10000): ");
     scanf("%d", &amountGiven);
-    printf("Insert the range of distances to be generated(from minimum to maximum vlaue respectively): ");
+    printf("Insert the range of distances to be generated. Only positive integer values from minimum to maximum or vice versa should be entered: ");
     scanf("%d %d", &min, &max);
+    while(true)
+    {
+        if(min <= 0 || max <= 0)
+        {
+            printf("Enerted numbers are incorrect! Provide acceptable values: "); 
+            scanf("%d %d", &min, &max);
+        } 
+        else
+            break;
+    }
+    if (min > max)
+    {
+            int tmp;
+            tmp = min;
+            min = max;
+            max = tmp;
+     }
 	createDistmxRand(distmx, min, max);
     createChromosomes(chromemx);
     createChromosomesNg(nextGen);
@@ -361,7 +373,7 @@ int main (void)
     }
     else
     {
-        puts("\nInserted number of generations is incorrect, please provide acceptable number.");
+        puts("\nInserted number of generations is incorrect, please provide acceptable value.");
         return -1;
     }
     return 0; 
