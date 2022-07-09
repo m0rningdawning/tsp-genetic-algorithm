@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include "algorithm.h"
+#include "algorithm_initialization.h"
 
 // Traveling Salesman Problem
 
