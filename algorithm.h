@@ -17,5 +17,6 @@ void crossover(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES],int next
 void mutationInv(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES]);
 void reproduction(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES]);
 void pickBest(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int overallBest[1][CITIES]);
+int get_ascii(char character);
 
 #endif

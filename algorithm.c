@@ -282,3 +282,10 @@ void pickBest(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int over
             overallBest[0][i] = chromemx[pos][i];
     }
 }
+/*
+int get_ascii(char character) {
+    void* result;
+    result = character;
+    return (int)character;
+}
+*/
