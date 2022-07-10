@@ -11,17 +11,41 @@
 extern int nextFree;
 
 int initialize(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int nextGen[AMOUNT][CITIES], int overallBest[1][CITIES], int amountGiven, int min, int max) { 
+    int chCheck;
     printf("Insert the amount of additional generations you want to be created(in range between 0 - 10000): ");
-    scanf("%d", &amountGiven);
+    if (scanf("%d", &chCheck) == 0)
+        getchar();
+    else
+        amountGiven = chCheck;
+    puts("--------------------------------------------");
     /*printf("%d", get_ascii(amountGiven));*/
     if (amountGiven > 0 && amountGiven <= 10000) {    
         printf("Insert the range of distances to be generated. Only positive integer values from minimum to maximum or vice versa should be entered: ");
-        scanf("%d %d", &min, &max);
+       
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            min = chCheck;
+
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            max = chCheck;
+        puts("--------------------------------------------");
         while(true) {
         if(min <= 0 || max <= 0) {
             printf("Enerted values are incorrect! Provide acceptable numbers: "); 
-            scanf("%d %d", &min, &max);
-        } 
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            min = chCheck;
+
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            max = chCheck;
+        puts("--------------------------------------------");
+        }
         else
             break;
         }
@@ -66,17 +90,32 @@ int initialize(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int nex
         printf("Distance: %d\n",fitness(distmx, overallBest[0]));
         puts("--------------------------------------------");
     }
-    else if(amountGiven == 0) {
-        puts("--------------------------------------------");
-        puts("Warning, \"0\" has been selected! The shortest route will be picked from the initial population, after the selection of the range of distances.");
+    else {
+        puts("Warning, unacceptable value or \"0\" has been selected! The shortest route will be picked from the initial population, after the selection of the range of distances.");
         puts("--------------------------------------------");
         printf("Insert the range of distances to be generated. Only positive integer values from minimum to maximum or vice versa should be entered: ");
-        scanf("%d %d", &min, &max);
-        puts("--------------------------------------------"); 
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            min = chCheck;
+
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            max = chCheck;
         while(true) {
         if(min <= 0 || max <= 0) {
+        puts("--------------------------------------------");
             printf("Enerted values are incorrect! Provide acceptable numbers: "); 
-            scanf("%d %d", &min, &max);
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            min = chCheck;
+
+        if (scanf("%d", &chCheck) == 0)
+            getchar();
+        else
+            max = chCheck;
         } 
         else
             break;
@@ -102,10 +141,6 @@ int initialize(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int nex
             printf("%d  ", overallBest[0][i]);
         printf("Distance: %d\n", fitness(distmx, overallBest[0]));
         puts("--------------------------------------------");
-    }
-    else {
-        puts("\nInserted number of generations is incorrect, please provide acceptable value.");
-        return -1;
     }
     return 0;
 }

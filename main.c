@@ -15,7 +15,6 @@ int main(void){
     int chromemx[AMOUNT][CITIES];
     int nextGen[AMOUNT][CITIES];
     int overallBest[1][CITIES];
-    int amountGiven, min, max;
-    initialize(distmx, chromemx, nextGen, overallBest, amountGiven, min, max);
+    initialize(distmx, chromemx, nextGen, overallBest, 0, 0, 0);
     return 0;
 }
