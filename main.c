@@ -10,13 +10,12 @@ int CITIES = 10;
 //Indicator of the next free place in array
 int nextFree;
 
-int main(void)
-{
+int main(void){
     int distmx[CITIES][CITIES];
     int chromemx[AMOUNT][CITIES];
     int nextGen[AMOUNT][CITIES];
     int overallBest[1][CITIES];
     int amountGiven, min, max;
     initialize(distmx, chromemx, nextGen, overallBest, amountGiven, min, max);
-    return 0; 
+    return 0;
 }
