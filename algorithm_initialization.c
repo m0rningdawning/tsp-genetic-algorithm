@@ -18,7 +18,6 @@ int initialize(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES], int nex
     else
         amountGiven = chCheck;
     puts("--------------------------------------------");
-    /*printf("%d", get_ascii(amountGiven));*/
     if (amountGiven > 0 && amountGiven <= 10000) {    
         printf("Insert the range of distances to be generated. Only positive integer values from minimum to maximum or vice versa should be entered: ");
        
