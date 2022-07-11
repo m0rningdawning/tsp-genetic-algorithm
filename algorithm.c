@@ -180,7 +180,7 @@ void crossover(int distmx[AMOUNT][CITIES], int chromemx[AMOUNT][CITIES],int next
 }
 
 void mutationInv(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES],int nextGen[AMOUNT][CITIES]){
-    int pos = tournament(distmx,chromemx, 3);
+    int pos = tournament(distmx, chromemx, 3);
     int tmp = rand() % CITIES / 2;
     int counter1 = tmp + 1;
     int counter2 = counter1 + 4;

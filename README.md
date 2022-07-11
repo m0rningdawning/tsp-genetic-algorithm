@@ -1,16 +1,17 @@
 # Travelling Salesman Problem 
 Travelling Salesman Problem solved using Genetic Algorithm.
-Working Plan:
-
--populate x
--check fit x
--add an additonal array for the nextGeneration x
--regular mutation (0.2) x
--inverse mutation (0.2) x
--crossover (0.4) x
--reproduce(copy) (0.2) x
--copy from nextGen array to chromemx (loop) x
--loop n times x
--result is a last generation created with calculated fitness of each route and the overall best route x
-
-
+## Functions
+Algorithm involves 4 main functions:
+### Mutation
+The function randomly chooses 2 places inside the single chromosome and interchanges them. Function requires the use of auxillary function "Tournament" in order to choose the chromosome to be mutated.
+### Mutation inverse
+The function randomly chooses an element in range from the 2nd to 6th inside the single chromosome and reverses the next 5 elements. Function requires the use of auxillary function "Tournament" in order to choose the chromosome to be mutated. 
+### Crossover
+The function interchanges last 5 elements of 2 chromosomes one by one. It also avoids repetition by comparing each individual element that ought to be replaced with the first 5 elements inside the target chromosome.
+### Reproduction
+The function copies last 2 chromosomes to the new generation untouched in order to occasionally help avoiding local minimum situations.
+Auxillary functions:
+### Fitness
+The function checks the overall distance of the given chromosome(route).
+### Tournament
+The function checks the fitness of randomly chosen chromosomes and returns the position of the winning chromosome in the "chromemx" array.
