@@ -10,6 +10,7 @@ The function randomly chooses an element in range from the 2nd to 6th inside the
 The function interchanges last 5 elements of 2 chromosomes one by one. It also avoids repetition by comparing each individual element that ought to be replaced with the first 5 elements inside the target chromosome.
 ### Reproduction
 The function copies last 2 chromosomes to the new generation untouched in order to occasionally help avoiding local minimum situations.
+
 Auxillary functions:
 ### Fitness
 The function checks the overall distance of the given chromosome(route).
