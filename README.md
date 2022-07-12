@@ -12,7 +12,7 @@ The function interchanges last 5 elements of 2 chromosomes one by one. It also a
 The function copies last 2 chromosomes to the new generation untouched in order to occasionally help avoiding local minimum situations.
 
 ## Auxillary functions:
-Algorithm involves 4 main functions:
+Algorithm involves 2 auxillary functions:
 ### Fitness
 The function checks the overall distance of the given chromosome(route).
 ### Tournament
