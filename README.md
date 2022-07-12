@@ -1,6 +1,6 @@
 # Travelling Salesman Problem 
 Travelling Salesman Problem solved using Genetic Algorithm.
-## Functions
+## Main functions
 Algorithm involves 4 main functions:
 ### Mutation
 The function randomly chooses 2 places inside the single chromosome and interchanges them. Function requires the use of auxillary function "Tournament" in order to choose the chromosome to be mutated.
@@ -11,8 +11,11 @@ The function interchanges last 5 elements of 2 chromosomes one by one. It also a
 ### Reproduction
 The function copies last 2 chromosomes to the new generation untouched in order to occasionally help avoiding local minimum situations.
 
-Auxillary functions:
+## Auxillary functions:
+Algorithm involves 4 main functions:
 ### Fitness
 The function checks the overall distance of the given chromosome(route).
 ### Tournament
 The function checks the fitness of randomly chosen chromosomes and returns the position of the winning chromosome in the "chromemx" array.
+## Features
+The program is fully functional for 10 cities as well as with any amount up untill 10 with slight code modifications. It also has the ability to randomly generate the distances in given range so that user won't bother with inputting it themselves.
