@@ -18,4 +18,4 @@ The function checks the overall distance of the given chromosome(route).
 ### Tournament
 The function checks the fitness of randomly chosen chromosomes and returns the position of the winning chromosome in the "chromemx" array.
 ## Features
-The program is fully functional for 10 cities as well as with any amount up untill 10 with slight code modifications. It also has the ability to randomly generate the distances in given range so that user won't bother with inputting it themselves.
+The program is fully functional for 10 cities as well as with any amount up untill 10 with slight code modifications. It also has the ability to randomly generate the symmetrical matrix of distances in given range so that user won't bother with inputting it themselves.
