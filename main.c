@@ -10,7 +10,7 @@ int CITIES = 10;
 //Indicator of the next free place in array
 int nextFree;
 
-int main(void){
+int main(int argc, char *argv[]){
     int distmx[CITIES][CITIES];
     int chromemx[AMOUNT][CITIES];
     int nextGen[AMOUNT][CITIES];
