@@ -20,7 +20,7 @@ int fitness(int distmx[CITIES][CITIES], int ch[]){
 
 void createDistmxRand(int distmx[CITIES][CITIES], int min, int max){
 	srand(time(NULL));
-	for(int i = 0; i < AMOUNT; i++)
+	for(int i = 0; i < AMOUNT; i++){
 		for(int j = i; j < CITIES; j++){
 			if(i == j)
 				distmx[i][j] = 0;
@@ -29,33 +29,37 @@ void createDistmxRand(int distmx[CITIES][CITIES], int min, int max){
 				distmx[j][i] = distmx[i][j];
 			}
 		}
+    }
 }
 
 void createChromosomes(int chromemx[AMOUNT][CITIES]){
     srand(time(NULL));
     int temp, counter;
-    for(int i = 0; i < AMOUNT; i++)
+    for(int i = 0; i < AMOUNT; i++){
         for(int j = 0; j < CITIES; j++){
             chromemx[i][j] = j + 1;
         }
-    for(int i = 0; i < AMOUNT; i++)
+    }
+    for(int i = 0; i < AMOUNT; i++){
         for(int j = 0; j < CITIES; j++){
             counter = (rand() % CITIES - 1) + 1;
             temp = chromemx[i][j];
             chromemx[i][j] = chromemx[i][counter];
             chromemx[i][counter] = temp;
         }
+    }
 }
 
 void createChromosomesNg(int nextGen[AMOUNT][CITIES]){
-    for(int i = 0; i < AMOUNT; i++)
+    for(int i = 0; i < AMOUNT; i++){
         for(int j = 0; j < CITIES; j++){
             nextGen[i][j] = j + 1;
         }
+    }
 }
 
 void printChromosomes(int distmx[CITIES][CITIES], int chromemx[AMOUNT][CITIES]){
-  for(int i = 0; i < AMOUNT; i++){
+    for(int i = 0; i < AMOUNT; i++){
         for(int j = 0; j < CITIES; j++)
             printf("%d  ",chromemx[i][j]);
         printf("Distance: %d ", fitness(distmx, chromemx[i]));
