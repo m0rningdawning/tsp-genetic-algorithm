@@ -1,5 +1,11 @@
 # Travelling Salesman Problem
 Travelling Salesman Problem solved using Genetic Algorithm.
+
+![GitHub language count](https://img.shields.io/github/languages/count/m0rningdawning/tsp-genetic-algorithm)
+![GitHub top language](https://img.shields.io/github/languages/top/m0rningdawning/tsp-genetic-algorithm) 
+![GitHub last commit](https://img.shields.io/github/last-commit/m0rningdawning/tsp-genetic-algorithm)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 ## Main functions
 The algorithm involves four main functions:
 ### Mutation
